@@ -3,8 +3,6 @@ import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 
 import styles from "./styles.scss";
 
-console.log(styles)
-
 let map; // Mapbox
 
 const Mapboxer = props => {
@@ -27,13 +25,13 @@ const Mapboxer = props => {
     setInitialised(true);
   }, []);
 
-  // Update map style
+  // Set map style on props change
   useEffect(() => {
     if (!initialised) return;
     map.setStyle(props.setStyle);
   }, [props.setStyle]);
 
-  // Update map bounds
+  // Set map bounds on props change
   useEffect(() => {
     if (!initialised) return;
     map.fitBounds(props.setBounds, {animate: false});

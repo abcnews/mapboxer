@@ -1,4 +1,4 @@
-# mapboxer
+# Mapboxer
 
 > A Mapbox component
 
