@@ -5,7 +5,7 @@ import styles from "./styles.css";
 
 let map;
 
-const Mapboxer = React.memo(props => {
+const Mapboxer = props => {
   const inputEl = useRef(null);
 
   const [initialised, setInitialised] = useState(false);
@@ -13,11 +13,13 @@ const Mapboxer = React.memo(props => {
   // On mount initialisation code
   useEffect(() => {
     mapboxgl.accessToken = props.apiKey;
+
     map = new mapboxgl.Map({
       container: inputEl.current,
       attributionControl: false,
       style: props.styleUrl,
-      interactive: false // Stops mouse stopping animation
+      interactive: false, // Stops mouse stopping animation
+      bounds: [[103.4,-47.7],[163.0,-2.7]] //103.4,-47.7,163.0,-2.7
     });
 
     setInitialised(true);
@@ -30,7 +32,7 @@ const Mapboxer = React.memo(props => {
   }, [props.styleUrl]);
 
   return <div className={styles.root} ref={inputEl} />;
-});
+};
 
 Mapboxer.defaultProps = {
   styleUrl: "mapbox://styles/mapbox/light-v10"
