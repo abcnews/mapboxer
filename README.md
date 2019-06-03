@@ -24,4 +24,4 @@ const Mapboxer = props => {
 
 ## License
 
-MIT © [phocks](https://github.com/phocks)
+MIT © [Joshua Byrd](https://github.com/phocks)

@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 
-import styles from "./styles.css";
+import styles from "./styles.scss";
 
-let map;
+console.log(styles)
+
+let map; // Mapbox
 
 const Mapboxer = props => {
   const inputEl = useRef(null);
@@ -17,9 +19,9 @@ const Mapboxer = props => {
     map = new mapboxgl.Map({
       container: inputEl.current,
       attributionControl: false,
-      style: props.styleUrl,
+      style: props.setStyle,
       interactive: false, // Stops mouse stopping animation
-      bounds: [[103.4,-47.7],[163.0,-2.7]] //103.4,-47.7,163.0,-2.7
+      bounds: props.setBounds // Australia [[103.4,-47.7],[163.0,-2.7]]
     });
 
     setInitialised(true);
@@ -28,14 +30,21 @@ const Mapboxer = props => {
   // Update map style
   useEffect(() => {
     if (!initialised) return;
-    map.setStyle(props.styleUrl);
-  }, [props.styleUrl]);
+    map.setStyle(props.setStyle);
+  }, [props.setStyle]);
+
+  // Update map bounds
+  useEffect(() => {
+    if (!initialised) return;
+    map.fitBounds(props.setBounds, {animate: false});
+  }, [props.setBounds])
 
   return <div className={styles.root} ref={inputEl} />;
 };
 
 Mapboxer.defaultProps = {
-  styleUrl: "mapbox://styles/mapbox/light-v10"
+  setStyle: "mapbox://styles/mapbox/light-v10",
+  setBounds: [[103.4,-47.7],[163.0,-2.7]]
 }
 
 export default Mapboxer;

@@ -49,6 +49,7 @@
     "dist"
   ],
   "dependencies": {
-    "mapbox-gl": "^1.0.0"
+    "mapbox-gl": "^1.0.0",
+    "node-sass": "^4.12.0"
   }
 }
