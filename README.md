@@ -44,6 +44,15 @@ const Mapboxer = props => {
 };
 ```
 
+## Styling
+
+Use [Mapbox Studio](https://studio.mapbox.com/) to change styles and add custom geographical features to the map. Publish your new style and set the mapbox url with the `setStyle` prop.
+
+## TODO
+
+* Add more Mapbox API options
+* Add ability to programatically add layers
+
 ## License
 
 MIT © [Joshua Byrd](https://github.com/phocks)
