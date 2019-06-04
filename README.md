@@ -53,6 +53,10 @@ Use [Mapbox Studio](https://studio.mapbox.com/) to change styles and add custom 
 * Add more Mapbox API options
 * Add ability to programatically add layers
 
+## Demo
+
+http://nucwed.aus.aunty.abc.net.au/news/2019-06-04/mapbox-component/11156202 (ABC Internal only)
+
 ## License
 
 MIT © [Joshua Byrd](https://github.com/phocks)
