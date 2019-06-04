@@ -52,6 +52,7 @@ Use [Mapbox Studio](https://studio.mapbox.com/) to change styles and add custom 
 
 * Add more Mapbox API options
 * Add ability to programatically add layers
+* Improve docs
 
 ## Demo
 

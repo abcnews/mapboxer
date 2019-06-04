@@ -38,48 +38,48 @@ const Mapboxer = props => {
   // Set map bounds instantly on props change
   useEffect(() => {
     if (!initialised || map.isMoving()) return;
-    map.fitBounds(props.setBounds, {animate: false});
-  }, [props.setBounds])
+    map.fitBounds(props.setBounds, { animate: false });
+  }, [props.setBounds]);
 
   // Fit to bounds with animation
   useEffect(() => {
     if (!initialised) return;
     map.fitBounds(props.fitBounds);
-  }, [props.fitBounds])
+  }, [props.fitBounds]);
 
   // Instantly set zoom
   useEffect(() => {
     if (!initialised || map.isMoving()) return;
     map.setZoom(props.setZoom);
-  }, [props.setZoom])
+  }, [props.setZoom]);
 
   // Flying animation
   useEffect(() => {
     if (!initialised) return;
     map.flyTo(props.flyTo);
-  }, [props.flyTo])
+  }, [props.flyTo]);
 
   // Easing animation
   useEffect(() => {
     if (!initialised) return;
     map.easeTo(props.easeTo);
-  }, [props.easeTo])
+  }, [props.easeTo]);
 
   // Jump immediately to a point
   useEffect(() => {
     if (!initialised) return;
     map.jumpTo(props.jumpTo);
-  }, [props.jumpTo])
+  }, [props.jumpTo]);
 
   return <div className={styles.root} ref={inputEl} />;
 };
 
 Mapboxer.defaultProps = {
   setStyle: "mapbox://styles/mapbox/light-v10",
-  setBounds: [[103.4,-47.7],[163.0,-2.7]],
+  setBounds: [[103.4, -47.7], [163.0, -2.7]],
   attributionControl: {},
   interactive: false,
   antialias: false
-}
+};
 
 export default Mapboxer;
