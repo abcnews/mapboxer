@@ -14,7 +14,6 @@ npm install
 
 ```jsx
 import React from "react";
-
 import Mapboxer from "mapboxer";
 
 const Mapboxer = props => {

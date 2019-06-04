@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 
+// CSS Modules
 import styles from "./styles.scss";
 
 let map; // Mapbox
@@ -21,7 +22,8 @@ const Mapboxer = props => {
       attributionControl: props.attributionControl,
       style: props.setStyle,
       interactive: props.interactive, // Stops mouse stopping animation
-      bounds: props.setBounds // Australia [[103.4,-47.7],[163.0,-2.7]]
+      bounds: props.setBounds, // Australia [[103.4,-47.7],[163.0,-2.7]]
+      antialias: props.antialias
     });
 
     setInitialised(true);
@@ -33,9 +35,9 @@ const Mapboxer = props => {
     map.setStyle(props.setStyle);
   }, [props.setStyle]);
 
-  // Set map bounds on props change
+  // Set map bounds instantly on props change
   useEffect(() => {
-    if (!initialised) return;
+    if (!initialised || map.isMoving()) return;
     map.fitBounds(props.setBounds, {animate: false});
   }, [props.setBounds])
 
@@ -45,6 +47,29 @@ const Mapboxer = props => {
     map.fitBounds(props.fitBounds);
   }, [props.fitBounds])
 
+  // Instantly set zoom
+  useEffect(() => {
+    if (!initialised || map.isMoving()) return;
+    map.setZoom(props.setZoom);
+  }, [props.setZoom])
+
+  // Flying animation
+  useEffect(() => {
+    if (!initialised) return;
+    map.flyTo(props.flyTo);
+  }, [props.flyTo])
+
+  // Easing animation
+  useEffect(() => {
+    if (!initialised) return;
+    map.easeTo(props.easeTo);
+  }, [props.easeTo])
+
+  useEffect(() => {
+    if (!initialised) return;
+    map.jumpTo(props.jumpTo);
+  }, [props.jumpTo])
+
   return <div className={styles.root} ref={inputEl} />;
 };
 
@@ -52,7 +77,8 @@ Mapboxer.defaultProps = {
   setStyle: "mapbox://styles/mapbox/light-v10",
   setBounds: [[103.4,-47.7],[163.0,-2.7]],
   attributionControl: {},
-  interactive: false
+  interactive: false,
+  antialias: false
 }
 
 export default Mapboxer;
