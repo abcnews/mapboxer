@@ -65,6 +65,7 @@ const Mapboxer = props => {
     map.easeTo(props.easeTo);
   }, [props.easeTo])
 
+  // Jump immediately to a point
   useEffect(() => {
     if (!initialised) return;
     map.jumpTo(props.jumpTo);
