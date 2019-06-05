@@ -22,7 +22,7 @@ const Mapboxer = props => {
       attributionControl: props.attributionControl,
       style: props.setStyle,
       interactive: props.interactive, // Stops mouse stopping animation
-      bounds: props.setBounds, // Australia [[103.4,-47.7],[163.0,-2.7]]
+      bounds: props.setBounds,
       antialias: props.antialias
     });
 
@@ -71,12 +71,16 @@ const Mapboxer = props => {
     map.jumpTo(props.jumpTo);
   }, [props.jumpTo]);
 
-  return <div className={styles.root} ref={inputEl} />;
+  return (
+    <div className={styles.root} ref={inputEl}>
+      {props.children}
+    </div>
+  );
 };
 
 Mapboxer.defaultProps = {
   setStyle: "mapbox://styles/mapbox/light-v10",
-  setBounds: [[103.4, -47.7], [163.0, -2.7]],
+  setBounds: [[103.4, -47.7], [163.0, -2.7]], // Australia by default
   attributionControl: {},
   interactive: false,
   antialias: false
