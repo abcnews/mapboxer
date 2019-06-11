@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
+const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 // CSS Modules
 import styles from "./styles.scss";
@@ -44,7 +44,9 @@ const Mapboxer = props => {
   // Fit to bounds with animation
   useEffect(() => {
     if (!initialised) return;
-    map.fitBounds(props.fitBounds);
+    // Allow fit bounds options
+    if (typeof props.fitBoundsOptions === "undefined") map.fitBounds(props.fitBounds);
+    else map.fitBounds(props.fitBounds, props.fitBoundsOptions);
   }, [props.fitBounds]);
 
   // Instantly set zoom
